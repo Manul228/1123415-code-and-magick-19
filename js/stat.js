@@ -32,10 +32,10 @@ var getMaxElement = function (arr) {
 };
 
 window.renderStatistics = function (ctx, players, times) {
-  ctx.save()
+  ctx.save();
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.3)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
-  ctx.restore()
+  ctx.restore();
 
   ctx.fillStyle = '#000';
 
