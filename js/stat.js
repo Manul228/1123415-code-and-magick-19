@@ -15,8 +15,10 @@ var BAR_HEIGHT = 150;
 var HSL_BLUE = 240;
 
 var renderCloud = function (ctx, x, y, color) {
+  ctx.save();
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
+  ctx.restore();
 };
 
 var getMaxElement = function (arr) {
@@ -32,10 +34,8 @@ var getMaxElement = function (arr) {
 };
 
 window.renderStatistics = function (ctx, players, times) {
-  ctx.save();
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.3)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
-  ctx.restore();
 
   ctx.fillStyle = '#000';
 
