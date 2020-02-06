@@ -1,12 +1,9 @@
 'use strict';
 
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
-
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLORS = ['rgb (101, 137, 164)', 'rgb (241, 43, 107)', 'rgb (146, 100, 161)', 'rgb (56, 159, 117)', 'rgb (215, 210, 55)', 'rgb (0, 0, 0)'];
-var EUES_COLORS = ['black','red', 'blue', 'yellow', 'green'];
+var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -14,24 +11,40 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-var getRandomName = function () {
-  var namesNumber = WIZARD_NAMES.length;
-  var surnamesNumber = WIZARD_SURNAMES.length;
+var getRandomElement = function (array) {
+  var len = array.length;
 
-  if (namesNumber === 0 && surnamesNumber === 0)
-    return "Anonimous";
+  if (len === 0)
+    return "Empty array";
 
-  var randomNameIndex = getRandomInt(0, namesNumber);
-  var randomSurnameIndex = getRandomInt(0, surnamesNumber);
-
-  var name = WIZARD_NAMES[randomNameIndex];
-  var surname = WIZARD_SURNAMES[randomSurnameIndex];
-
-  return name + ' ' + surname;
+  return array[getRandomInt(0, len)];
 }
 
-console.log(getRandomName());
+var getTraitsArray = function (amount) {
+  var traits = [];
 
-var getTraitsCollection = function () {
+  for (var i = 0; i < amount; ++i) {
+    var name = getRandomElement(WIZARD_NAMES) + ' ' + getRandomElement(WIZARD_SURNAMES);
+    var coatColor = getRandomElement(COAT_COLORS);
+    var eyesColor = getRandomElement(EYES_COLORS);
 
+    var trait = {
+      name: name,
+      coatColor: coatColor,
+      eyesColor: eyesColor
+    };
+
+    traits.push(trait);
+  }
+
+  return traits;
 }
+
+var userDialog = document.querySelector('.setup');
+userDialog.classList.remove('hidden');
+
+var similarListElement = userDialog.querySelector('.setup-similar-list');
+
+var similarWizardTemplate = document.querySelector('#similar-wizard-template')
+    .content
+    .querySelector('.setup-similar-item');
