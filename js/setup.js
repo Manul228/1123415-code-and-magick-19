@@ -7,8 +7,8 @@ var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_AMOUNT = 4;
 
 function getRandomInt(min, max) {
-  var min = Math.ceil(min);
-  var max = Math.floor(max);
+  min = Math.ceil(min);
+  max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
