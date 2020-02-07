@@ -7,8 +7,8 @@ var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_AMOUNT = 4;
 
 function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
+  var min = Math.ceil(min);
+  var max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
@@ -16,7 +16,7 @@ var getRandomElement = function (array) {
   var len = array.length;
 
   if (len === 0) {
-    return 'Empty array';
+    return undefined;
   }
 
   return array[getRandomInt(0, len)];
@@ -73,4 +73,4 @@ var placeWizards = function () {
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
 };
 
-placeWizards.call();
+placeWizards();
