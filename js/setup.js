@@ -65,7 +65,7 @@ var placeWizards = function () {
   var wizards = getWizards(WIZARDS_AMOUNT);
 
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < wizards.length; i++) {
+  for (var i = 0; i < wizards.length; ++i) {
     fragment.appendChild(renderWizard(wizards[i], similarWizardTemplate));
   }
   similarListElement.appendChild(fragment);
