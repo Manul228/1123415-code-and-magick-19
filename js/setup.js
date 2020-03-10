@@ -5,6 +5,8 @@ var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', '�
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_AMOUNT = 4;
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -74,3 +76,43 @@ var placeWizards = function () {
 };
 
 placeWizards();
+
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+
+var onPopupEscPress = function (evt) {
+  if (evt.key === ESC_KEY && !evt.target.classList.contains('setup-user-name')) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
+setupOpen.addEventListener('click', function () {
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () {
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    closePopup();
+  }
+});
